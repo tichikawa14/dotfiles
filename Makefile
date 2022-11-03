@@ -1,6 +1,6 @@
 PHONY: all
 all:
-	initialize brew-bundle brew-bundle-mas stow-packages asdf-plugins @cmatrix
+	initialize brew-bundle brew-bundle-mas stow-packages asdf-plugins mac-setup @cmatrix
 
 PHONY: initialize
 initialize:
@@ -28,3 +28,7 @@ stow-packages:
 .PHONY: asdf-plugins
 asdf-plugins:
 	@./scripts/asdf_plugins.sh
+
+.PHONY: mac-setup
+mac-setup:
+	@./mac/setup.sh
