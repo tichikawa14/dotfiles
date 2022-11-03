@@ -1,6 +1,6 @@
 PHONY: all
 all:
-	initialize brew-bundle brew-bundle-mas stow-packages asdf-plugins mac-setup @cmatrix
+	initialize brew-bundle brew-bundle-mas stow-packages asdf-plugins gitignore-global mac-setup @cmatrix
 
 PHONY: initialize
 initialize:
@@ -28,6 +28,10 @@ stow-packages:
 .PHONY: asdf-plugins
 asdf-plugins:
 	@./scripts/asdf_plugins.sh
+
+.PHONY: gitignore-global
+gitignore-global:
+	@./packages/git/.gitignore-global.sh
 
 .PHONY: mac-setup
 mac-setup:
