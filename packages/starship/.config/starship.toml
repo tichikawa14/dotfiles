@@ -1,0 +1,72 @@
+[username]
+style_user = "yellow bold"
+style_root = "white bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+
+[git_branch]
+symbol = "🌱 "
+style = "bold green"
+
+[custom.arch]
+command = "uname -m"
+when = """ test $(uname -m) = "x86_64" """
+style = "bold yellow"
+format = "[$output]($style)"
+
+[time]
+disabled = false
+format = '[🕙 $time]($style) '
+time_format = "%T"
+
+[aws]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
+
+[package]
+disabled = true
+
+[git_status]
+style = "bold white"
+conflicted = " 💥 "
+ahead = " 🏎💨 "
+behind = " 💨 "
+diverged = " 🚀 "
+up_to_date = " 🌝 "
+untracked = " 🛸 "
+stashed = " 🌞 "
+modified = " 👾 "
+staged = '[++\($count\)](green)'
+renamed = " 🌚 "
+deleted = " 🗑 "
+
+[battery]
+full_symbol = "🌕 "
+charging_symbol = "🌔 "
+discharging_symbol = "🌓 "
+unknown_symbol = "🪐 "
+empty_symbol = "🌑 "
+
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
+discharging_symbol = "🌘 "
+
+[[battery.display]]
+threshold = 20
+style = "bold red"
+discharging_symbol = "🌘 "
