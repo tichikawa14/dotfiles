@@ -20,13 +20,13 @@ fi
 
 chsh -s /bin/zsh
 
-# Install xcode
-xcode-select --install >/dev/null
-
 # Install Homebrew
 if [ ! -f /opt/homebrew/bin/brew ]; then
   log 'Setup Homebrew'
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+  wait
+  echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
+  eval $(/opt/homebrew/bin/brew shellenv)
 else
   log "Homebrew already installed."
 fi

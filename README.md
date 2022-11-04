@@ -12,18 +12,17 @@ This dotfiles for macOS are managed with [Homebrew Bundle](https://github.com/Ho
 ## セットアップ
 
 ```
-$ git clone https://github.com/tichikawa14/dotfiles.git .
+$ xcode-select --install
+$ git clone https://github.com/tichikawa14/dotfiles.git
 $ cd ~/dotfiles
 $ make all
 ```
 
-## その他手動で行う設定(と同時に TODO でもある)
+## その他手動で行う設定(TODO)
 
 ### システム環境設定
 
 - デスクトップ画像・ユーザーアイコン編集
-- システム環境設定 > Touch ID で指紋登録
-- システム環境設定 > キーボード > 入力ソースを Google 日本語入力に変更
 - システム環境設定 > キーボード > ショートカット > Spotlight > Spotlight 検索を表示のショートカットを off にする
 - システム環境設定 > キーホード > ショートカット > Mission Control > デスクトップ n へ切り替えを on にする
 - システム環境設定 > キーホード > ショートカット > キーボード > 次のウィンドウを捜査対象にするの割当を option + tab にする
@@ -60,4 +59,3 @@ $ make all
 ### AWS
 
 - aws configure コマンドで認証情報の設定を行う
-- 
