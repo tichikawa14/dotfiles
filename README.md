@@ -22,7 +22,7 @@ $ make all
 
 ### Homebrew
 
-最初はパスを通す必要あり([scripts/initialize.sh](https://github.com/tichikawa14/dotfiles/blob/main/scripts/initialize.sh#L27-L29)では対応できず...)
+最初はパスを通す必要あり([scripts/initialize.sh](https://github.com/tichikawa14/dotfiles/commit/ed5e63dca1dccce81bb36dc9ec833d39ac21df95#diff-7cc6d1956fc288604f7ac8a34821a403547cc008d2af517ca7c1688ed70e5abcR26-R29)では対応できず...)
 ```
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
