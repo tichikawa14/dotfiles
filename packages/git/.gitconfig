@@ -1,6 +1,6 @@
 [user]
-    name = tichikawa14
-    email = gakusei.umeeee@gmail.com
+	name = tichikawa14
+	email = gakusei.umeeee@gmail.com
 [secrets]
     patterns = private_key
     patterns = private_key_id
@@ -17,3 +17,11 @@
 	autoSetupRemote = true
 [core]
 	excludesfile = /Users/ichikawa/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/ichikawa/.stCommitMsg
