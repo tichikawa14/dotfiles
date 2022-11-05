@@ -7,7 +7,7 @@ fi
 ## Dockからすべてのアプリを消す
 defaults write com.apple.dock persistent-apps -array
 ## Dockのサイズ
-defaults write com.apple.dock "tilesize" -int "36"
+defaults write com.apple.dock "tilesize" -int "50"
 ## 最近起動したアプリを非表示
 defaults write com.apple.dock "show-recents" -bool "false"
 ## アプリをしまうときのアニメーション
@@ -56,7 +56,7 @@ defaults -currentHost write -g com.apple.mouse.tapBehavior -bool "true"
 ## 軌跡の速さ
 defaults write -g com.apple.trackpad.scaling 3
 ## スクロールの方向
-defaults write -g com.apple.swipescrolldirection -bool "false"
+defaults write -g com.apple.swipescrolldirection -bool "true"
 
 # Mouse
 ## 軌跡の速さ
