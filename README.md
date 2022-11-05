@@ -54,8 +54,8 @@ eval $(/opt/homebrew/bin/brew shellenv)
 - システム環境設定 > ソフトウェアアップデート > 自動アップデート off にする
 
 ### Dock整理
+<img width="1376" alt="スクリーンショット 2022-11-05 23 40 15" src="https://user-images.githubusercontent.com/42080487/200125346-7b4b230f-ea79-4914-abed-921b05d39a6c.png">
 
-![](https://gyazo.com/af64ba2a3e40858be4a2479baa7eb639)
 
 ### Finder
 
@@ -64,6 +64,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 ### GitHub
 
 - SSH秘密鍵・公開鍵の登録
+
 　(参考)https://chaika.hatenablog.com/entry/2021/05/06/083000
 - `gh auth login`コマンドでログインする
 
