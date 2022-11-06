@@ -84,6 +84,8 @@ eval $(/opt/homebrew/bin/brew shellenv)
 - Appearance > Options > Show Alfred on > mouse screen にする
 - Advanced > Force Keyboard を ABC にする
 - クリップボード履歴 ~/Library/Application Support/Alfred/Databases/clipboard.alfdbにあるので、Macのファイル共有で新しいPCに移して再起動
+- workflow から各アプリ用のhotkeyを追加
+![スクリーンショット 2022-11-06 15 47 40](https://user-images.githubusercontent.com/42080487/200158100-154c8f1a-e74c-4e14-af20-ec3041463585.png)
 
 ### VSCode
 
