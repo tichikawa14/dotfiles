@@ -7,14 +7,13 @@ show_always = true
 
 [character]
 success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
+error_symbol = "[>](bold red)"
 
 [directory]
 truncation_length = 100
 truncate_to_repo = false
 
 [git_branch]
-symbol = "🌱 "
 style = "bold green"
 
 [custom.arch]
@@ -42,17 +41,17 @@ disabled = true
 
 [git_status]
 style = "bold white"
-conflicted = " 💥 "
-ahead = " 🏎💨 "
-behind = " 💨 "
-diverged = " 🚀 "
-up_to_date = " 🌝 "
-untracked = " 🛸 "
-stashed = " 🌞 "
-modified = " 👾 "
+conflicted = "💥 "
+ahead = "🏎💨 "
+behind = "💨 "
+diverged = "🚀 "
+up_to_date = "🌝 "
+untracked = "🛸 "
+stashed = "🌞 "
+modified = "👾 "
 staged = '[++\($count\)](green)'
-renamed = " 🌚 "
-deleted = " 🗑 "
+renamed = "🌚 "
+deleted = "🗑 "
 
 [battery]
 full_symbol = "🌕 "
