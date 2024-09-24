@@ -1,5 +1,5 @@
 PHONY: all
-all: initialize brew-bundle brew-bundle-mas stow-packages asdf-plugins gitignore-global mac-setup @cmatrix
+all: initialize brew-bundle brew-bundle-mas stow-packages gitignore-global mac-setup @cmatrix
 
 PHONY: initialize
 initialize:
@@ -23,10 +23,6 @@ stow-packages:
 	@echo	"------------Start updating dotfiles symbolic link.------------"
 	@./scripts/stow_packages.sh
 	@echo "--------------------Finished Successfully.--------------------"
-
-.PHONY: asdf-plugins
-asdf-plugins:
-	@./scripts/asdf_plugins.sh
 
 .PHONY: gitignore-global
 gitignore-global:
