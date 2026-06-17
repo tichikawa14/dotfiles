@@ -1,4 +1,6 @@
-if [ $(uname) != "Darwin" ] ; then
+#!/bin/bash
+
+if [ "$(uname)" != "Darwin" ] ; then
 	echo "Not MacOS!"
 	exit 0
 fi
@@ -20,7 +22,7 @@ defaults write com.apple.dock "mru-spaces" -bool "false"
 if [[ ! -d "$HOME/Pictures/スクリーンショット" ]]; then
     mkdir -p "$HOME/Pictures/スクリーンショット"
 fi
-defaults write com.apple.screencapture "location" -string "~/Pictures/スクリーンショット"
+defaults write com.apple.screencapture "location" -string "$HOME/Pictures/スクリーンショット"
 
 # Finder
 ## 拡張子まで表示

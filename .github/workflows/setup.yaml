@@ -11,8 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: check brew tap, brew and cask package installation
-        run: make brew-bundle-ci
+      - name: install chezmoi
+        run: brew install chezmoi
 
-      - name: check symbolic linking
-        run: make stow-packages
+      - name: check brew tap, brew and cask package installation
+        run: |
+          grep -Ev "awscli|cocoapods" dot_Brewfile > /tmp/dotfiles.Brewfile.ci
+          brew bundle --verbose --file=/tmp/dotfiles.Brewfile.ci
+
+      - name: check chezmoi source state
+        run: chezmoi --source=. apply --dry-run --verbose

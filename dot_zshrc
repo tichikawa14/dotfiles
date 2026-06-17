@@ -4,12 +4,12 @@
 #  _ / /\__ \ | | | | | (__
 # (_)___|___/_| |_|_|  \___|
 
-source $STOW_PACKAGES_PATH/zsh/.zsh/init.zsh
-source $STOW_PACKAGES_PATH/zsh/.zsh/alias.zsh
-source $STOW_PACKAGES_PATH/zsh/.zsh/history.zsh
+source "$HOME/.zsh/init.zsh"
+source "$HOME/.zsh/alias.zsh"
+source "$HOME/.zsh/history.zsh"
 
 # bun completions
-[ -s "/Users/ichikawa/.bun/_bun" ] && source "/Users/ichikawa/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -17,7 +17,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/ichikawa/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -27,4 +27,4 @@ esac
 export PATH="$HOME/.local/bin:$PATH"
 
 # Turso
-export PATH="$PATH:/Users/ichikawa/.turso"
+export PATH="$PATH:$HOME/.turso"
