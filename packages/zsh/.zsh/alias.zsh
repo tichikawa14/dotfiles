@@ -51,4 +51,16 @@ function peco-cdr () {
   fi
 }
 zle -N peco-cdr
-bindkey '^F' peco-cdr
+bindkey '^G' peco-cdr
+
+# go-task
+function select-task () {
+  task_name=$(task -a --json | jq -r '.tasks[].name' | peco)
+  if [ -n "$task_name" ]; then
+    BUFFER="task $task_name"
+    CURSOR=$#BUFFER
+    zle reset-prompt
+  fi
+}
+zle -N select-task
+bindkey '^T' select-task
