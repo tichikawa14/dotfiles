@@ -1,22 +1,23 @@
-PHONY: all
-all: initialize brew-bundle brew-bundle-mas stow-packages gitignore-global mac-setup @cmatrix
+.PHONY: all
+all: initialize brew-bundle brew-bundle-mas stow-packages gitignore-global mac-setup
+	@cmatrix
 
-PHONY: initialize
+.PHONY: initialize
 initialize:
 	@./scripts/initialize.sh
 
 .PHONY: brew-bundle
 brew-bundle:
-	brew bundle install --verbose --no-lock --file=./packages/brewfiles/.Brewfile
+	brew bundle install --verbose --file=./packages/brewfiles/.Brewfile
 
 .PHONY: brew-bundle-mas
 brew-bundle-mas:
-	brew bundle install --verbose --no-lock --file=./packages/brewfiles/.Brewfile.mas
+	brew bundle install --verbose --file=./packages/brewfiles/.Brewfile.mas
 
 .PHONY: brew-bundle-ci
 brew-bundle-ci:
 	grep -Ev "awscli|cocoapods" ./packages/brewfiles/.Brewfile > ./packages/brewfiles/.Brewfile.ci
-	brew bundle --verbose --no-lock --file=./packages/brewfiles/.Brewfile.ci
+	brew bundle --verbose --file=./packages/brewfiles/.Brewfile.ci
 
 .PHONY: stow-packages
 stow-packages:
