@@ -1,6 +1,6 @@
 [user]
 	name = tichikawa14
-	email = 42080487+tichikawa14@users.noreply.github.com
+	email = gakusei.umeeee@gmail.com
 
 [secrets]
 	patterns = private_key
@@ -22,6 +22,7 @@
 
 [core]
 	excludesfile = /Users/ichikawa/.gitignore_global
+	pager = delta
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -41,3 +42,25 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+	side-by-side = true
+	line-numbers = true
+
+[merge]
+	conflictstyle = zdiff3
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[rebase]
+	autoStash = true
