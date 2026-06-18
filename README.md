@@ -6,8 +6,8 @@
 macOS 用 dotfiles です。設定ファイルは [chezmoi](https://www.chezmoi.io/) で管理し、アプリケーションと CLI ツールは [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) で管理します。
 
 - Shell: Z shell
-- Terminal: [Warp](https://www.warp.dev) with [Starship](https://starship.rs/)
-- Editor: [RubyMine](https://www.jetbrains.com/ruby/)
+- Terminal: [Ghostty](https://ghostty.org/) with [Starship](https://starship.rs/)
+- Editor: [Cursor](https://cursor.com/)
 
 ## 初回セットアップ
 
@@ -16,6 +16,7 @@ xcode-select --install
 git clone https://github.com/tichikawa14/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./scripts/initialize.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew bundle install --verbose --file=dot_Brewfile
 brew bundle install --verbose --file=dot_Brewfile.mas
 chezmoi init --source ~/dotfiles
@@ -26,6 +27,7 @@ chezmoi apply
 初回セットアップでは以下を実行します。
 
 - Homebrew の初期導入
+- 現在のシェルで Homebrew のパスを有効化
 - `dot_Brewfile` と `dot_Brewfile.mas` による `brew bundle install`
 - `chezmoi apply`
 - `mac/setup.sh`
@@ -42,14 +44,14 @@ chezmoi apply
 
 ## 日常運用
 
-初回セットアップ後は、普段の作業ディレクトリから `~/dotfiles` へ移動する必要はありません。chezmoi は source directory を覚えているため、以下のコマンドはどこからでも実行できます。
-
-設定変更は、基本的に chezmoi 経由で行います。
+設定変更は、基本的に `~/dotfiles` の source state を直接編集してから `$HOME` に反映します。
 
 ```sh
-chezmoi edit --apply ~/.zshrc
-chezmoi edit --apply ~/.gitconfig
-chezmoi edit --apply ~/.config/starship.toml
+cd ~/dotfiles
+vim dot_zshrc
+vim dot_gitconfig.tmpl
+vim dot_config/starship.toml
+chezmoi apply
 ```
 
 ホーム側を直接編集した場合だけ、source state へ取り込みます。
@@ -105,15 +107,6 @@ Mac App Store アプリは `dot_Brewfile.mas` に追記してください。
 
 ## その他手動で行う設定
 
-### Homebrew
-
-最初はパスを通す必要があります。
-
-```sh
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
 ### Xcode
 
 - Xcode のライセンスに同意する
@@ -128,7 +121,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 - システム環境設定 > 通知 > 適宜 on にする
 - システム環境設定 > サウンド > 通知音変更
 - システム環境設定 > コントロールセンター > バッテリー > 割合(%)を表示 on にする
-- システム環境設定 > デスクトップと Dock > デフォルトの Web ブラウザ > Vivaldi に設定
+- システム環境設定 > デスクトップと Dock > デフォルトの Web ブラウザ > Arc に設定
 - システム環境設定 > ディスプレイ > 解像度 スペースを拡大 に設定
 - システム環境設定 > ディスプレイ > 複数のディスプレイを配置 変更
 - システム環境設定 > 壁紙・スクリーンセーバー > 適宜変更
@@ -148,35 +141,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 - SSH 秘密鍵・公開鍵を登録する
 - `gh auth login` でログインする
 
-### RubyMine
-
-- Edit > Manage IDE Settings > IDE Setting Sync > Sync Plugins Silently
-- Preferences > Version Control > Github アカウント追加
-
-### Alfred
-
-- General > Alfred Hotkey を cmd + space にする
-- General > Where are you を Japan に設定
-- Features > Web Bookmarks > Google Chrome Bookmarks を on にする
-- Features > Calculator > Ignore thousands grouping separator にチェックを入れる
-- Appearance > Alfred Modern Dark
-- Appearance > Options > Hide menu bar icon を on にする
-- Appearance > Options > Show Alfred on > mouse screen にする
-- Advanced > Force Keyboard を ABC にする
-- クリップボード履歴を `~/Library/Application Support/Alfred/Databases/clipboard.alfdb` から移して再起動
-- workflow から各アプリ用の hotkey を追加
-
-### VSCode
-
-- GitHub アカウントでログインして設定を同期させる
-
 ### AWS
 
 - `aws configure` で認証情報を設定する
-
-### HyperSwitch
-
-- Run HyperSwitch in the background をチェックする
 
 ### RunCat
 
