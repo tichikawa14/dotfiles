@@ -1,0 +1,9 @@
+[tools]
+node = "latest"
+ruby = "latest"
+pnpm = "latest"
+flutter = "latest"
+go = "latest"
+uv = "latest"
+yarn = "latest"
+rust = "latest"

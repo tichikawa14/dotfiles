@@ -3,11 +3,3 @@ node_modules/
 .directory/
 .DS_Store
 .swp
-.tool-versions
-/tandems/**/.tool_versions
-
-# Claude Code
-.claude/
-CLAUDE.md
-.serena/
-.mcp.json
