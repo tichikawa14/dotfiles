@@ -145,7 +145,6 @@ Mac App Store アプリは `dot_Brewfile.mas` に追記してください。
 
 - `aws configure` で認証情報を設定する
 
-### RunCat
+### RunCat Neo
 
-- 一般 > ログイン時に自動で RunCat を起動をチェックする
-- システム情報 > CPU 負荷 メニューバーに表示をチェックする
+- ログイン時に自動で RunCat Neo を起動するように設定する

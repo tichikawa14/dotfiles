@@ -24,7 +24,6 @@ brew "zsh-completions"
 
 cask "arc"
 cask "brave-browser"
-cask "chatgpt"
 cask "claude"
 cask "cleanshot"
 cask "codex-app"
