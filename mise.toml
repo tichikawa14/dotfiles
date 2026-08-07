@@ -30,7 +30,9 @@ min_version = "2026.8.2"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
+"~/.codex/hooks.json" = { source = "dot_codex/hooks.json", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
+"~/.codex/runcat-hook.py" = { source = "dot_codex/runcat-hook.py", mode = "symlink" }
 "~/.zprofile" = { source = "dot_zprofile", mode = "symlink" }
 "~/.zshenv" = { source = "dot_zshenv", mode = "symlink" }
 "~/.zshrc" = { source = "dot_zshrc", mode = "symlink" }
