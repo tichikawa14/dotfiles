@@ -14,6 +14,3 @@ setopt hist_save_no_dups       # ignore duplicate command when saving history
 setopt hist_reduce_blanks      # remove duplicate spaces
 setopt hist_ignore_space       # ignore first space command
 setopt share_history           # share history between processes
-
-export FZF_CTRL_R_OPTS="--layout=reverse --with-nth=2.."
-FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"

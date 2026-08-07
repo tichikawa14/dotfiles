@@ -28,37 +28,3 @@ alias de='docker exec -it $(docker ps | fzf | cut -d " " -f 1) /bin/bash'
 alias ls='eza --icons --group-directories-first'
 alias ll='eza -la --icons --group-directories-first --git'
 alias lt='eza --tree --level=2 --icons'
-
-# chage directory
-if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
-  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-  add-zsh-hook chpwd chpwd_recent_dirs
-  zstyle ':completion:*' recent-dirs-insert both
-  zstyle ':chpwd:*' recent-dirs-default true
-  zstyle ':chpwd:*' recent-dirs-max 1000
-  zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
-fi
-
-function fzf-cdr () {
-  cdr -r
-  local selected_dir="$(printf '%s\n' "${reply[@]}" | fzf --prompt="cdr >" --layout=reverse --query "$LBUFFER")"
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd -- ${(q)selected_dir}"
-    CURSOR=$#BUFFER
-    zle reset-prompt
-  fi
-}
-zle -N fzf-cdr
-bindkey '^G' fzf-cdr
-
-# go-task
-function select-task () {
-  task_name=$(task -a --json | jq -r '.tasks[].name' | fzf --layout=reverse)
-  if [ -n "$task_name" ]; then
-    BUFFER="task $task_name"
-    CURSOR=$#BUFFER
-    zle reset-prompt
-  fi
-}
-zle -N select-task
-bindkey '^T' select-task

@@ -4,32 +4,21 @@
 # |_|_| |_|_|\__|
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  FPATH="/opt/homebrew/share/zsh-completions:$FPATH"
+  source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
   autoload -Uz compinit
-  compinit
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  stale_zcompdump=(${~zcompdump}(N.mh+24))
+  if [[ ! -e "$zcompdump" || ${#stale_zcompdump} -gt 0 ]]; then
+    compinit -d "$zcompdump"
+  else
+    compinit -C -d "$zcompdump"
+  fi
+  unset zcompdump stale_zcompdump
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # PATHを変更する初期化処理の後でmiseを有効化する
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
-
-# Option + → を次の単語に進むように設定
-bindkey '^[^[[C' forward-word
-
-# Option + ← を前の単語に戻るように設定
-bindkey '^[^[[D' backward-word
-
-# Ctrl + u を bashの挙動と合わせる
-bindkey '^U' backward-kill-line

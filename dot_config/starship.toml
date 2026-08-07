@@ -16,12 +16,6 @@ truncate_to_repo = false
 [git_branch]
 style = "bold green"
 
-[custom.arch]
-command = "uname -m"
-when = """ test $(uname -m) = "x86_64" """
-style = "bold yellow"
-format = "[$output]($style)"
-
 [time]
 disabled = false
 format = '[🕙 $time]($style) '
