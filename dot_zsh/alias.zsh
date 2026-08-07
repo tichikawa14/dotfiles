@@ -17,12 +17,12 @@ alias gcob='git checkout -b'
 alias gf='git fetch'
 alias gc='git commit'
 alias gcm='git commit -m'
-alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g lb='`git branch | fzf --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 # デフォルトブランチに切り替え(main or master)
 alias gm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 
 # docker
-alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'
+alias de='docker exec -it $(docker ps | fzf | cut -d " " -f 1) /bin/bash'
 
 # eza
 alias ls='eza --icons --group-directories-first'
@@ -39,20 +39,21 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
   zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-function peco-cdr () {
-  local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --layout top-down --query "$LBUFFER")"
+function fzf-cdr () {
+  cdr -r
+  local selected_dir="$(printf '%s\n' "${reply[@]}" | fzf --prompt="cdr >" --layout=reverse --query "$LBUFFER")"
   if [ -n "$selected_dir" ]; then
-    BUFFER="cd `echo $selected_dir | awk '{print$2}'`"
+    BUFFER="cd -- ${(q)selected_dir}"
     CURSOR=$#BUFFER
     zle reset-prompt
   fi
 }
-zle -N peco-cdr
-bindkey '^G' peco-cdr
+zle -N fzf-cdr
+bindkey '^G' fzf-cdr
 
 # go-task
 function select-task () {
-  task_name=$(task -a --json | jq -r '.tasks[].name' | peco)
+  task_name=$(task -a --json | jq -r '.tasks[].name' | fzf --layout=reverse)
   if [ -n "$task_name" ]; then
     BUFFER="task $task_name"
     CURSOR=$#BUFFER
