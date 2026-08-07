@@ -1,0 +1,94 @@
+[
+  {
+    "command": "composer.cycleReasoningEffort",
+    "key": null
+  },
+  {
+    "command": "composer.decreaseReasoningEffort",
+    "key": "Command+Shift+W"
+  },
+  {
+    "command": "composer.increaseReasoningEffort",
+    "key": "Command+Shift+E"
+  },
+  {
+    "command": "composer.toggleFastMode",
+    "key": "Ctrl+Command+F"
+  },
+  {
+    "command": "copyWorkingDirectory",
+    "key": null
+  },
+  {
+    "command": "focusBrowserAddressBar",
+    "key": "Command+L"
+  },
+  {
+    "command": "git.commit",
+    "key": "Command+Shift+C"
+  },
+  {
+    "command": "git.createPullRequest",
+    "key": "Command+Shift+P"
+  },
+  {
+    "command": "git.openPullRequest",
+    "key": "Command+Alt+P"
+  },
+  {
+    "command": "globalDictationHold",
+    "key": null
+  },
+  {
+    "command": "globalDictationToggle",
+    "key": null
+  },
+  {
+    "command": "nextTab",
+    "key": "Command+Shift+]"
+  },
+  {
+    "command": "nextTab",
+    "key": "Command+Alt+Right"
+  },
+  {
+    "command": "openBrowserTab",
+    "key": "Command+Alt+X"
+  },
+  {
+    "command": "openCommandMenu",
+    "key": "CmdOrCtrl+K"
+  },
+  {
+    "command": "openReviewTab",
+    "key": "Command+Shift+X"
+  },
+  {
+    "command": "previousTab",
+    "key": "Command+Shift+["
+  },
+  {
+    "command": "previousTab",
+    "key": "Command+Alt+Left"
+  },
+  {
+    "command": "toggleBrowserPanel",
+    "key": null
+  },
+  {
+    "command": "toggleFileTreePanel",
+    "key": null
+  },
+  {
+    "command": "toggleMaximizeSidePanel",
+    "key": "Command+Shift+B"
+  },
+  {
+    "command": "toggleReviewTab",
+    "key": "Ctrl+Command+Shift+G"
+  },
+  {
+    "command": "toggleThreadPin",
+    "key": null
+  }
+]

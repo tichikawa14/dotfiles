@@ -30,6 +30,7 @@ min_version = "2026.8.2"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
+"~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
 "~/.zprofile" = { source = "dot_zprofile", mode = "symlink" }
 "~/.zshenv" = { source = "dot_zshenv", mode = "symlink" }
 "~/.zshrc" = { source = "dot_zshrc", mode = "symlink" }
