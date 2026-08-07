@@ -17,16 +17,12 @@ alias gcob='git checkout -b'
 alias gf='git fetch'
 alias gc='git commit'
 alias gcm='git commit -m'
-alias gbdall='git branch -D $(git branch)'
 alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 # デフォルトブランチに切り替え(main or master)
 alias gm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 
 # docker
 alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'
-
-# bat
-alias cat='bat -pP'
 
 # eza
 alias ls='eza --icons --group-directories-first'

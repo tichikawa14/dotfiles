@@ -11,8 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: install mise and mas
-        run: brew install mise mas
+      - uses: jdx/mise-action@v4
+        with:
+          install: false
+
+      - name: install mas
+        run: brew install mas
 
       - name: trust mise config
         run: mise trust mise.toml
@@ -20,18 +24,25 @@ jobs:
       - name: check bootstrap plan
         run: mise -C . bootstrap plan
 
-      - name: check package and tool definitions
-        run: |
-          mise -C . bootstrap packages apply --dry-run
-          mise -C . install --dry-run
+      - name: check package definitions
+        run: mise -C . bootstrap packages apply --dry-run
 
       - name: check dotfiles
         run: |
           test_home=$(mktemp -d)
-          HOME="$test_home" mise trust "$GITHUB_WORKSPACE/mise.toml"
-          HOME="$test_home" mise -C "$GITHUB_WORKSPACE" bootstrap dotfiles apply --dry-run
+          test_config_dir=$(mktemp -d)
+          test_state_dir=$(mktemp -d)
+          test_mise_config_dir=$(mktemp -d)
+          sed \
+            -e "s#\"~/#\"$test_home/#g" \
+            -e "s#source = \"#source = \"$GITHUB_WORKSPACE/#g" \
+            mise.toml > "$test_config_dir/mise.toml"
+          export MISE_STATE_DIR="$test_state_dir"
+          export MISE_CONFIG_DIR="$test_mise_config_dir"
+          mise trust "$test_config_dir/mise.toml"
+          mise -C "$test_config_dir" bootstrap dotfiles apply --dry-run
           touch "$test_home/.zprofile"
-          if HOME="$test_home" mise -C "$GITHUB_WORKSPACE" bootstrap dotfiles apply --dry-run; then
+          if mise -C "$test_config_dir" bootstrap dotfiles apply --dry-run; then
             echo "既存dotfileの衝突を検出できませんでした" >&2
             exit 1
           fi

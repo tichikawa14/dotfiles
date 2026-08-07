@@ -3,7 +3,7 @@
 
 # dotfiles for Apple Silicon MacBook
 
-macOS用dotfilesです。[mise](https://mise.jdx.dev/)で開発ツール、システムパッケージ、GUIアプリ、dotfiles、macOS設定を管理します。
+macOS用dotfilesです。[mise](https://mise.jdx.dev/)でシステムパッケージ、GUIアプリ、dotfiles、macOS設定を管理します。開発ツールのバージョンは各プロジェクトのmise設定で管理します。
 
 - Shell: Z shell
 - Terminal: [Ghostty](https://ghostty.org/) with [Starship](https://starship.rs/)
@@ -23,7 +23,7 @@ git clone https://github.com/tichikawa14/dotfiles.git ~/dotfiles
 - `mise.toml`の信頼済み設定への登録
 - `mise bootstrap`による環境構築
 
-`mise bootstrap`では、パッケージ、dotfiles、macOS設定、ログインシェル、開発ツールを順番に適用します。App Storeへのログインやsudoパスワードが必要になる場合があります。
+`mise bootstrap`では、パッケージ、dotfiles、macOS設定、ログインシェルを順番に適用します。App Storeへのログインやsudoパスワードが必要になる場合があります。
 
 すでにHomebrew、mise、リポジトリがある場合は、次のコマンドで再適用できます。
 
@@ -42,7 +42,7 @@ git -C ~/dotfiles add .
 git -C ~/dotfiles commit -m "zsh設定を更新"
 ```
 
-`mise.toml`で管理するアプリ、ツール、dotfile、macOS設定を変更した場合は、適用前にplanを確認します。
+`mise.toml`で管理するアプリ、dotfile、macOS設定を変更した場合は、適用前にplanを確認します。
 
 ```sh
 mise -C ~/dotfiles bootstrap plan
@@ -63,10 +63,9 @@ mise -C ~/dotfiles bootstrap dotfiles apply
 # macOS設定
 mise -C ~/dotfiles bootstrap macos defaults apply --dry-run
 mise -C ~/dotfiles bootstrap macos defaults apply
-
-# 開発ツール
-mise -C ~/dotfiles install
 ```
+
+開発ツールは各プロジェクトの`mise.toml`やバージョンファイルに宣言し、プロジェクト内で`mise install`を実行します。グローバル設定はNode.jsとRubyのバージョンファイル認識だけを有効にし、共通バージョンは指定しません。
 
 現在の状態は次のコマンドで確認できます。
 
@@ -109,13 +108,12 @@ mise -C ~/dotfiles bootstrap packages prune --manager brew --dry-run
 mise -C ~/dotfiles bootstrap packages prune --manager brew
 ```
 
-パッケージと開発ツールを更新する場合は、次のコマンドを使います。
+パッケージとGUIアプリを更新する場合は、次のコマンドを使います。
 
 ```sh
 mise -C ~/dotfiles bootstrap packages upgrade --dry-run
 mise -C ~/dotfiles bootstrap packages upgrade
 brew upgrade --cask
-mise -C ~/dotfiles upgrade --bump
 ```
 
 ## Homebrewへ委譲する設定
