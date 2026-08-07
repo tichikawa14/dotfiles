@@ -36,6 +36,7 @@ min_version = "2026.8.2"
 "~/.config/karabiner/karabiner.json" = { source = "dot_config/karabiner/karabiner.json", mode = "symlink" }
 "~/.config/zed/keymap.json" = { source = "dot_config/zed/keymap.json", mode = "symlink" }
 "~/.config/zed/settings.json" = { source = "dot_config/zed/settings.json", mode = "symlink" }
+"~/Library/Sounds/codex-notification.wav" = { source = "dot_Library/Sounds/codex-notification.wav", mode = "symlink" }
 "~/.zprofile" = { source = "dot_zprofile", mode = "symlink" }
 "~/.zshenv" = { source = "dot_zshenv", mode = "symlink" }
 "~/.zshrc" = { source = "dot_zshrc", mode = "symlink" }
@@ -47,7 +48,7 @@ min_version = "2026.8.2"
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { tilesize = 50.0, "show-recents" = false, mineffect = "scale", "mru-spaces" = false }
-"NSGlobalDomain" = { AppleShowAllExtensions = true, KeyRepeat = 2, InitialKeyRepeat = 15, AppleKeyboardUIMode = 3, NSAutomaticCapitalizationEnabled = false, NSAutomaticSpellingCorrectionEnabled = false, "com.apple.trackpad.scaling" = "3", "com.apple.swipescrolldirection" = true, "com.apple.mouse.scaling" = "3", "com.apple.scrollwheel.scaling" = "5" }
+"NSGlobalDomain" = { AppleShowAllExtensions = true, KeyRepeat = 2, InitialKeyRepeat = 15, AppleKeyboardUIMode = 3, NSAutomaticCapitalizationEnabled = false, NSAutomaticSpellingCorrectionEnabled = false, "com.apple.keyboard.fnState" = true, "com.apple.sound.beep.sound" = "/Users/ichikawa/Library/Sounds/codex-notification.wav", "com.apple.sound.beep.volume" = 1.0, "com.apple.trackpad.scaling" = "3", "com.apple.swipescrolldirection" = true, "com.apple.mouse.scaling" = "3", "com.apple.scrollwheel.scaling" = "5" }
 "com.apple.Finder" = { AppleShowAllFiles = true }
 "com.apple.finder" = { ShowPathbar = true, WarnOnEmptyTrash = false }
 "com.apple.appleseed.FeedbackAssistant" = { Autogather = false }
