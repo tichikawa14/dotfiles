@@ -13,7 +13,7 @@ casks=(
   brave-browser
   claude
   cleanshot
-  codex-app
+  chatgpt
   cursor
   dockdoor
   expo-orbit
