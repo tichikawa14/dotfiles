@@ -1,0 +1,89 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "active_pane_modifiers": {
+
+  },
+  "diagnostics": {
+    "button": false
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "debugger": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "ui_font_size": 16.0,
+  "tabs": {
+    "git_status": false
+  },
+  "tab_bar": {
+    "show": true
+  },
+  "title_bar": {
+    "show_menus": true,
+    "show_user_menu": true,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+    "show_project_items": true,
+    "show_branch_name": true,
+    "show_branch_status_icon": false
+  },
+  "status_bar": {
+    "active_language_button": true
+  },
+  "cli_default_open_behavior": "new_window",
+  "agent": {
+    "button": false,
+    "dock": "right",
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "proxy": "",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
+  "terminal": {
+    "font_size": 12.0
+  },
+  "project_panel": {
+    "dock": "left",
+    "auto_reveal_entries": false
+  },
+  "preview_tabs": {
+    "enabled": false
+  },
+  "minimap": {
+    "show": "always"
+  },
+  "use_system_window_tabs": true,
+  "autosave": "on_focus_change",
+  "buffer_font_family": "HackGen35",
+  "base_keymap": "JetBrains",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Material Icon Theme"
+  },
+  "buffer_font_size": 12.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Ayu Dark"
+  },
+}
