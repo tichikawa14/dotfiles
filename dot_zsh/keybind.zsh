@@ -5,8 +5,23 @@
 # |_|\_\___|\__, |_.__/|_|_| |_|\__,_|
 #           |___/
 
+unset FZF_DEFAULT_OPTS
+export FZF_DEFAULT_OPTS="--color=bg+:#555555"
 export FZF_CTRL_R_OPTS="--layout=reverse --with-nth=2.."
 FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
+# Gitブランチ切り替え
+function fzf-git-branch () {
+  local selected_branch
+  selected_branch="$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf --prompt="branch > " --layout=reverse)"
+  if [ -n "$selected_branch" ]; then
+    zle -I
+    git switch -- "$selected_branch"
+    zle reset-prompt
+  fi
+}
+zle -N fzf-git-branch
+bindkey '^]' fzf-git-branch
 
 # ディレクトリ履歴
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
