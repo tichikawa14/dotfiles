@@ -3,10 +3,6 @@
 # | | '_ \| | __|
 # |_|_| |_|_|\__|
 
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
-eval "$(direnv hook zsh)"
-
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -23,6 +19,11 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# PATHを変更する初期化処理の後でmiseを有効化する
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 
 # Option + → を次の単語に進むように設定
 bindkey '^[^[[C' forward-word

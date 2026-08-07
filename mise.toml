@@ -1,0 +1,80 @@
+min_version = "2026.8.2"
+
+[tools]
+node = "latest"
+ruby = "latest"
+pnpm = "latest"
+flutter = "latest"
+go = "latest"
+uv = "latest"
+yarn = "latest"
+rust = "latest"
+java = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node", "ruby"]
+
+[bootstrap.packages]
+"brew:awscli" = "latest"
+"brew:direnv" = "latest"
+"brew:eza" = "latest"
+"brew:figlet" = "latest"
+"brew:gh" = "latest"
+"brew:git" = "latest"
+"brew:git-delta" = "latest"
+"brew:go-task" = "latest"
+"brew:jq" = "latest"
+"brew:killport" = "latest"
+"brew:lazygit" = "latest"
+"brew:libyaml" = "latest"
+"brew:mas" = "latest"
+"brew:mise" = "latest"
+"brew:openapi-generator" = "latest"
+"brew:openssl@3" = "latest"
+"brew:peco" = "latest"
+"brew:starship" = "latest"
+"brew:tree" = "latest"
+"brew:zsh-autosuggestions" = "latest"
+"brew:zsh-completions" = "latest"
+"mas:302584613" = "latest" # Kindle
+"mas:539883307" = "latest" # LINE
+"mas:1176895641" = "latest" # Spark
+"mas:6757801838" = "latest" # RunCat Neo
+
+[dotfiles]
+"~/.zprofile" = { source = "dot_zprofile", mode = "symlink" }
+"~/.zshenv" = { source = "dot_zshenv", mode = "symlink" }
+"~/.zshrc" = { source = "dot_zshrc", mode = "symlink" }
+"~/.zsh" = { source = "dot_zsh", mode = "symlink" }
+"~/.gitconfig" = { source = "dot_gitconfig", mode = "symlink" }
+"~/.gitignore_global" = { source = "dot_gitignore_global", mode = "symlink" }
+"~/.config/starship.toml" = { source = "dot_config/starship.toml", mode = "symlink" }
+"~/.config/mise/config.toml" = { source = "dot_config/mise/config.toml", mode = "symlink" }
+
+[bootstrap.macos.defaults]
+"com.apple.dock" = { tilesize = 50.0, "show-recents" = false, mineffect = "scale", "mru-spaces" = false }
+"NSGlobalDomain" = { AppleShowAllExtensions = true, KeyRepeat = 2, InitialKeyRepeat = 15, AppleKeyboardUIMode = 3, NSAutomaticCapitalizationEnabled = false, NSAutomaticSpellingCorrectionEnabled = false, "com.apple.trackpad.scaling" = "3", "com.apple.swipescrolldirection" = true, "com.apple.mouse.scaling" = "3", "com.apple.scrollwheel.scaling" = "5" }
+"com.apple.Finder" = { AppleShowAllFiles = true }
+"com.apple.finder" = { ShowPathbar = true, WarnOnEmptyTrash = false }
+"com.apple.LaunchServices" = { LSQuarantine = false }
+"com.apple.appleseed.FeedbackAssistant" = { Autogather = false }
+"com.apple.CrashReporter" = { DialogType = "none" }
+"com.apple.desktopservices" = { DSDontWriteNetworkStores = true, DSDontWriteUSBStores = true }
+"com.apple.menuextra.battery" = { ShowPercent = "YES" }
+"com.apple.AppleMultitouchTrackpad" = { Clicking = true }
+"com.apple.driver.AppleBluetoothMultitouch.trackpad" = { Clicking = true }
+
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
+[tasks.casks]
+description = "Homebrew caskを導入する"
+run = "./scripts/install-casks.sh"
+
+[tasks.bootstrap]
+description = "Homebrew所有のアプリを適用する"
+run = [
+  { task = "casks" },
+  "if [ \"${DOTFILES_CHECK_ONLY:-0}\" = 1 ]; then mas lookup 1423210932 >/dev/null; else test -d /Applications/Flow.app || mas install 1423210932; fi",
+  "if [ \"${DOTFILES_CHECK_ONLY:-0}\" = 1 ]; then mas lookup 497799835 >/dev/null; else test -d /Applications/Xcode.app || mas install 497799835; fi",
+]

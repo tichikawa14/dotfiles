@@ -11,13 +11,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: install chezmoi
-        run: brew install chezmoi
+      - name: install mise and mas
+        run: brew install mise mas
 
-      - name: check brew tap, brew and cask package installation
+      - name: trust mise config
+        run: mise trust mise.toml
+
+      - name: check bootstrap plan
+        run: mise -C . bootstrap plan
+
+      - name: check package and tool definitions
         run: |
-          grep -Ev "awscli|cocoapods" dot_Brewfile > /tmp/dotfiles.Brewfile.ci
-          brew bundle --verbose --file=/tmp/dotfiles.Brewfile.ci
+          mise -C . bootstrap packages apply --dry-run
+          mise -C . install --dry-run
 
-      - name: check chezmoi source state
-        run: chezmoi --source=. apply --dry-run --verbose
+      - name: check dotfiles
+        run: |
+          test_home=$(mktemp -d)
+          HOME="$test_home" mise trust "$GITHUB_WORKSPACE/mise.toml"
+          HOME="$test_home" mise -C "$GITHUB_WORKSPACE" bootstrap dotfiles apply --dry-run
+          touch "$test_home/.zprofile"
+          if HOME="$test_home" mise -C "$GITHUB_WORKSPACE" bootstrap dotfiles apply --dry-run; then
+            echo "既存dotfileの衝突を検出できませんでした" >&2
+            exit 1
+          fi
+
+      - name: check macOS defaults
+        run: mise -C . bootstrap macos defaults apply --dry-run
+
+      - name: check bootstrap tasks without installation
+        env:
+          DOTFILES_CHECK_ONLY: "1"
+        run: mise -C "$GITHUB_WORKSPACE" run --skip-tools bootstrap

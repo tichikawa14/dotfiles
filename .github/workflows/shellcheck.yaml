@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run ShellCheck
-        run: ./scripts/shellcheck.sh scripts/initialize.sh scripts/shellcheck.sh mac/setup.sh
+        run: ./scripts/shellcheck.sh scripts/initialize.sh scripts/install-casks.sh scripts/shellcheck.sh

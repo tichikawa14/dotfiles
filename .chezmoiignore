@@ -1,9 +1,0 @@
-.DS_Store
-.github/
-.gitignore
-.idea/
-Makefile
-README.md
-mac/
-packages/
-scripts/

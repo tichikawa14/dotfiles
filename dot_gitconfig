@@ -21,7 +21,7 @@
 	default = current
 
 [core]
-	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = delta
 
 [difftool "sourcetree"]
@@ -33,7 +33,7 @@
 	trustExitCode = true
 
 [commit]
-	template = {{ .chezmoi.homeDir }}/.stCommitMsg
+	template = ~/.stCommitMsg
 
 [alias]
 	ch = "!f() { git checkout $1 2>/dev/null || git checkout -b $1; }; f"

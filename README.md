@@ -3,7 +3,7 @@
 
 # dotfiles for Apple Silicon MacBook
 
-macOS 用 dotfiles です。設定ファイルは [chezmoi](https://www.chezmoi.io/) で管理し、アプリケーションと CLI ツールは [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) で管理します。
+macOS用dotfilesです。[mise](https://mise.jdx.dev/)で開発ツール、システムパッケージ、GUIアプリ、dotfiles、macOS設定を管理します。
 
 - Shell: Z shell
 - Terminal: [Ghostty](https://ghostty.org/) with [Starship](https://starship.rs/)
@@ -14,123 +14,154 @@ macOS 用 dotfiles です。設定ファイルは [chezmoi](https://www.chezmoi.
 ```sh
 xcode-select --install
 git clone https://github.com/tichikawa14/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-./scripts/initialize.sh
-eval "$(/opt/homebrew/bin/brew shellenv)"
-brew bundle install --verbose --file=dot_Brewfile
-brew bundle install --verbose --file=dot_Brewfile.mas
-chezmoi init --source ~/dotfiles
-chezmoi apply
-./mac/setup.sh
+~/dotfiles/scripts/initialize.sh
 ```
 
-初回セットアップでは以下を実行します。
+`scripts/initialize.sh`は次の処理を行います。
 
-- Homebrew の初期導入
-- 現在のシェルで Homebrew のパスを有効化
-- `dot_Brewfile` と `dot_Brewfile.mas` による `brew bundle install`
-- `chezmoi apply`
-- `mac/setup.sh`
+- Homebrewとmiseの導入
+- `mise.toml`の信頼済み設定への登録
+- `mise bootstrap`による環境構築
 
-chezmoi を個別に初期化する場合は、clone 済みのこのリポジトリを source directory として使います。
+`mise bootstrap`では、パッケージ、dotfiles、macOS設定、ログインシェル、開発ツールを順番に適用します。App Storeへのログインやsudoパスワードが必要になる場合があります。
+
+すでにHomebrew、mise、リポジトリがある場合は、次のコマンドで再適用できます。
 
 ```sh
-chezmoi init --source ~/dotfiles
-chezmoi source-path
-chezmoi apply
+mise -C ~/dotfiles bootstrap
 ```
-
-このリポジトリには `.chezmoi.toml.tmpl` があるため、`chezmoi init --source ~/dotfiles` で `sourceDir` を含む chezmoi 設定が生成されます。`chezmoi source-path` が `~/dotfiles` を指していることを確認してください。
 
 ## 日常運用
 
-設定変更は、基本的に `~/dotfiles` の source state を直接編集してから `$HOME` に反映します。
+dotfilesは`~/dotfiles`内のファイルへのsymlinkです。ホーム側を編集すると、リポジトリのファイルが直接更新されます。
 
 ```sh
-cd ~/dotfiles
-vim dot_zshrc
-vim dot_gitconfig.tmpl
-vim dot_config/starship.toml
-chezmoi apply
+vim ~/.zshrc
+git -C ~/dotfiles diff
+git -C ~/dotfiles add .
+git -C ~/dotfiles commit -m "zsh設定を更新"
 ```
 
-ホーム側を直接編集した場合だけ、source state へ取り込みます。
+`mise.toml`で管理するアプリ、ツール、dotfile、macOS設定を変更した場合は、適用前にplanを確認します。
 
 ```sh
-chezmoi re-add ~/.zshrc
-chezmoi re-add ~/.gitconfig
-chezmoi re-add ~/.config/starship.toml
+mise -C ~/dotfiles bootstrap plan
+mise -C ~/dotfiles bootstrap
 ```
 
-`chezmoi apply` は source state から `$HOME` への反映です。ホーム側の変更を取り込むコマンドではありません。
-
-差分確認は次のコマンドを使います。
+影響範囲を限定して確認・適用する場合は、対象別のコマンドを使います。
 
 ```sh
-chezmoi status
-chezmoi diff
+# パッケージ
+mise -C ~/dotfiles bootstrap packages apply --dry-run
+mise -C ~/dotfiles bootstrap packages apply
+
+# dotfiles
+mise -C ~/dotfiles bootstrap dotfiles apply --dry-run
+mise -C ~/dotfiles bootstrap dotfiles apply
+
+# macOS設定
+mise -C ~/dotfiles bootstrap macos defaults apply --dry-run
+mise -C ~/dotfiles bootstrap macos defaults apply
+
+# 開発ツール
+mise -C ~/dotfiles install
 ```
 
-変更後は source directory に移動して commit します。
+現在の状態は次のコマンドで確認できます。
 
 ```sh
-chezmoi cd
-git status --short
-git diff
-git add .
-git commit -m "zsh 設定を更新"
-git push
+mise -C ~/dotfiles bootstrap status
+mise doctor
 ```
 
-## Homebrew 管理
+## アプリとCLIツールの管理
 
-Brewfile は chezmoi 管理対象として `$HOME/.Brewfile` と `$HOME/.Brewfile.mas` に反映されます。source state ではそれぞれ `dot_Brewfile` と `dot_Brewfile.mas` です。
-
-インストールは明示的に実行します。
+パッケージを追加するときは、種別に応じたmanagerを指定します。コマンドは`mise.toml`の更新とインストールをまとめて行います。
 
 ```sh
-brew bundle install --verbose --file="$(chezmoi source-path ~/.Brewfile)"
-brew bundle install --verbose --file="$(chezmoi source-path ~/.Brewfile.mas)"
+# Homebrew formula
+mise -C ~/dotfiles bootstrap packages use brew:jq
+
+# Mac App Store
+mise -C ~/dotfiles bootstrap packages use mas:497799835
 ```
 
-現時点では `chezmoi apply` 時の `brew bundle` 自動実行は入れていません。`brew bundle install` はアプリのインストールや更新を伴うため、dotfile 反映とは分けて明示実行する方針です。
-
-Homebrew で追加した項目を Brewfile に反映する場合は、内容を確認してから source state を更新します。
+GUIアプリは、Homebrewが導入した既存caskをmiseが引き継げないため、`scripts/install-casks.sh`の`casks`へ追加します。`mise bootstrap`の最後にHomebrew経由で不足分だけを導入します。
 
 ```sh
-brew bundle dump --file="$(chezmoi source-path ~/.Brewfile)" --force
-chezmoi cd
-git diff -- dot_Brewfile
+vim ~/dotfiles/scripts/install-casks.sh
+mise -C ~/dotfiles run casks
 ```
 
-Mac App Store アプリは `dot_Brewfile.mas` に追記してください。
+今後のMacにインストールしないパッケージは、`mise.toml`から該当行を削除します。現在のMacからも削除する場合は、対象を確認して個別にアンインストールします。
+
+```sh
+brew uninstall jq
+brew uninstall --cask ghostty
+mas uninstall 497799835
+```
+
+Homebrew formulaに限り、宣言されていないパッケージをまとめて確認・削除できます。手動で導入したformulaも対象になるため、必ずdry-runを先に実行します。
+
+```sh
+mise -C ~/dotfiles bootstrap packages prune --manager brew --dry-run
+mise -C ~/dotfiles bootstrap packages prune --manager brew
+```
+
+パッケージと開発ツールを更新する場合は、次のコマンドを使います。
+
+```sh
+mise -C ~/dotfiles bootstrap packages upgrade --dry-run
+mise -C ~/dotfiles bootstrap packages upgrade
+brew upgrade --cask
+mise -C ~/dotfiles upgrade --bump
+```
+
+## Homebrewへ委譲する設定
+
+Homebrew所有の既存caskはmiseが引き継げないため、bootstrapタスクからHomebrewへ委譲します。
+
+- Homebrew cask
+- `ngrok` caskのpostflight処理
+
+これらの処理は`mise bootstrap`の最後に`scripts/install-casks.sh`を通して実行されます。
+
+## 意図的に自動管理しないmacOS設定
+
+旧`mac/setup.sh`にあった次の設定は管理対象外です。
+
+- Dockから全アプリを削除する設定
+- スクリーンショットの保存先
+- DNSサーバー
+- ファイアウォール
+- ホスト固有のタップクリック設定（`defaults -currentHost`）
 
 ## その他手動で行う設定
 
 ### Xcode
 
-- Xcode のライセンスに同意する
+- Xcodeのライセンスに同意する
 
-### .zsh_history 移行
+### `.zsh_history`移行
 
-- Mac のファイル共有で新しい PC に移す
+- Macのファイル共有で新しいPCに移す
 
 ### システム環境設定
 
 - システム環境設定 > ディスプレイ > 解像度を適宜変更
-- システム環境設定 > 通知 > 適宜 on にする
+- システム環境設定 > 通知 > 適宜onにする
 - システム環境設定 > サウンド > 通知音変更
-- システム環境設定 > コントロールセンター > バッテリー > 割合(%)を表示 on にする
-- システム環境設定 > デスクトップと Dock > デフォルトの Web ブラウザ > Arc に設定
-- システム環境設定 > ディスプレイ > 解像度 スペースを拡大 に設定
-- システム環境設定 > ディスプレイ > 複数のディスプレイを配置 変更
+- システム環境設定 > コントロールセンター > バッテリー > 割合（%）を表示onにする
+- システム環境設定 > デスクトップとDock > デフォルトのWebブラウザ > Arcに設定
+- システム環境設定 > 複数のディスプレイを配置
 - システム環境設定 > 壁紙・スクリーンセーバー > 適宜変更
-- システム環境設定 > ロック画面 > ディスプレイオフ適宜設定
+- システム環境設定 > ロック画面 > ディスプレイオフを適宜設定
 - システム環境設定 > ユーザーとグループ > ユーザーアイコン編集
-- システム環境設定 > キーボード > ショートカット > Spotlight > Spotlight 検索を表示のショートカットを off にする
-- システム環境設定 > キーボード > ショートカット > ファンクションキー > 標準のファンクションキーとして使用を on にする
-- システム環境設定 > キーボード > ショートカット > 修飾キー > Caps Lock キーを Command キーにする
-- システム環境設定 > ソフトウェアアップデート > 自動アップデート off にする
+- システム環境設定 > キーボード > ショートカット > Spotlight検索を表示するショートカットをoffにする
+- システム環境設定 > キーボード > ファンクションキー > 標準のファンクションキーとして使用をonにする
+- システム環境設定 > キーボード > 修飾キー > Caps LockキーをCommandキーにする
+- システム環境設定 > ソフトウェアアップデート > 自動アップデートをoffにする
 
 ### Finder
 
@@ -138,13 +169,13 @@ Mac App Store アプリは `dot_Brewfile.mas` に追記してください。
 
 ### GitHub
 
-- SSH 秘密鍵・公開鍵を登録する
-- `gh auth login` でログインする
+- SSH秘密鍵・公開鍵を登録する
+- `gh auth login`でログインする
 
 ### AWS
 
-- `aws configure` で認証情報を設定する
+- `aws configure`で認証情報を設定する
 
 ### RunCat Neo
 
-- ログイン時に自動で RunCat Neo を起動するように設定する
+- ログイン時に自動でRunCat Neoを起動するように設定する

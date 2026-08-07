@@ -1,3 +1,7 @@
+min_version = "2026.8.2"
+
+# グローバル設定には日常利用するツールだけを置く。
+# bootstrapとタスクは、実行したcheckoutを基準にするためルートのmise.tomlで管理する。
 [tools]
 node = "latest"
 ruby = "latest"
@@ -7,6 +11,7 @@ go = "latest"
 uv = "latest"
 yarn = "latest"
 rust = "latest"
+java = "latest"
 
 [settings]
-idiomatic_version_file_enable_tools = ["node"]
+idiomatic_version_file_enable_tools = ["node", "ruby"]
