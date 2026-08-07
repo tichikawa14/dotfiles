@@ -29,6 +29,7 @@ min_version = "2026.8.2"
 "mas:6757801838" = "latest" # RunCat Neo
 
 [dotfiles]
+"~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
 "~/.zprofile" = { source = "dot_zprofile", mode = "symlink" }
 "~/.zshenv" = { source = "dot_zshenv", mode = "symlink" }
 "~/.zshrc" = { source = "dot_zshrc", mode = "symlink" }
