@@ -1,6 +1,16 @@
 min_version = "2026.8.2"
 
-# 開発ツールのバージョンは各プロジェクトで管理し、グローバルには共通設定だけを置く。
+# 日常利用する開発ツールはグローバルで管理し、プロジェクト固有のバージョンは各プロジェクトで上書きする。
 # bootstrapとタスクは、実行したcheckoutを基準にするためルートのmise.tomlで管理する。
+[tools]
+node = "latest"
+ruby = "latest"
+pnpm = "latest"
+flutter = "latest"
+go = "latest"
+uv = "latest"
+yarn = "latest"
+rust = "latest"
+
 [settings]
 idiomatic_version_file_enable_tools = ["node", "ruby"]

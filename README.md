@@ -35,7 +35,7 @@ mise -C ~/dotfiles bootstrap
 mise -C ~/dotfiles bootstrap status
 ```
 
-Node.jsやRubyなどの開発ツールは、このリポジトリではなく各プロジェクトでバージョンを指定します。
+日常利用する開発ツールはグローバルmise設定で管理し、プロジェクト固有のバージョンが必要な場合は各プロジェクトで上書きします。
 
 ## パッケージの変更
 
