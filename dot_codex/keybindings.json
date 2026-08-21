@@ -1,5 +1,9 @@
 [
   {
+    "command": "archiveThread",
+    "key": null
+  },
+  {
     "command": "composer.cycleReasoningEffort",
     "key": null
   },
@@ -13,7 +17,11 @@
   },
   {
     "command": "composer.toggleFastMode",
-    "key": "Ctrl+Command+F"
+    "key": "Command+Shift+F"
+  },
+  {
+    "command": "copyDeeplink",
+    "key": "Command+Alt+L"
   },
   {
     "command": "copyWorkingDirectory",
@@ -29,11 +37,11 @@
   },
   {
     "command": "git.createPullRequest",
-    "key": "Command+Shift+P"
+    "key": "Command+Alt+P"
   },
   {
     "command": "git.openPullRequest",
-    "key": "Command+Alt+P"
+    "key": "Command+Shift+P"
   },
   {
     "command": "globalDictationHold",
@@ -53,7 +61,7 @@
   },
   {
     "command": "openBrowserTab",
-    "key": "Command+Alt+X"
+    "key": "Command+Shift+B"
   },
   {
     "command": "openCommandMenu",
@@ -62,6 +70,10 @@
   {
     "command": "openReviewTab",
     "key": "Command+Shift+X"
+  },
+  {
+    "command": "openSideChat",
+    "key": "Command+Shift+A"
   },
   {
     "command": "previousTab",
@@ -81,14 +93,22 @@
   },
   {
     "command": "toggleMaximizeSidePanel",
-    "key": "Command+Shift+B"
+    "key": "Command+Shift+S"
   },
   {
     "command": "toggleReviewTab",
     "key": "Ctrl+Command+Shift+G"
   },
   {
+    "command": "toggleSidePanel",
+    "key": "Command+Alt+S"
+  },
+  {
     "command": "toggleThreadPin",
     "key": null
+  },
+  {
+    "command": "toggleTraceRecording",
+    "key": "Command+Shift+T"
   }
 ]

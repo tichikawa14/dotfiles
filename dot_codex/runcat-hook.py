@@ -5,11 +5,13 @@ import json
 import os
 import sys
 import tempfile
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
 OUT = Path(os.environ.get("RUNCAT_OUT_FILE", str(Path.home() / ".codex" / "runcat-usage.json")))
+JST = timezone(timedelta(hours=9), name="JST")
+JAPANESE_WEEKDAYS = "月火水木金土日"
 
 
 def percentage_metric(title, used_percentage):
@@ -35,6 +37,22 @@ def window_title(window_minutes):
     return f"{window_minutes:g}m"
 
 
+def reset_metric(title, resets_at):
+    if not isinstance(resets_at, (int, float)) or isinstance(resets_at, bool):
+        return None
+    try:
+        reset_at = datetime.fromtimestamp(resets_at, timezone.utc).astimezone(JST)
+    except (OSError, OverflowError, ValueError):
+        return None
+    return {
+        "title": f"{title} リセット",
+        "formattedValue": (
+            f"{reset_at.month}/{reset_at.day}"
+            f"({JAPANESE_WEEKDAYS[reset_at.weekday()]}) {reset_at:%H:%M}"
+        ),
+    }
+
+
 def latest_token_count(transcript_path):
     if not transcript_path:
         return None
@@ -54,17 +72,6 @@ def latest_token_count(transcript_path):
     return latest
 
 
-def context_metric(token_count):
-    info = (token_count or {}).get("info") or {}
-    used_tokens = (info.get("last_token_usage") or {}).get("total_tokens")
-    context_window = info.get("model_context_window")
-    if not isinstance(used_tokens, (int, float)) or not isinstance(context_window, (int, float)):
-        return None
-    if context_window <= 0:
-        return None
-    return percentage_metric("Context", used_tokens / context_window * 100)
-
-
 def rate_limit_metrics(token_count):
     rate_limits = (token_count or {}).get("rate_limits") or {}
     # Only the canonical Codex bucket represents account usage.
@@ -78,6 +85,9 @@ def rate_limit_metrics(token_count):
         metric = percentage_metric(title, limit.get("used_percent")) if title else None
         if metric is not None and title not in titles:
             metrics.append(metric)
+            reset = reset_metric(title, limit.get("resets_at"))
+            if reset is not None:
+                metrics.append(reset)
             titles.add(title)
     return metrics
 
@@ -92,12 +102,9 @@ def write_snapshot(hook_input):
         model = "Codex"
     token_count = latest_token_count(hook_input.get("transcript_path"))
     rate_metrics = rate_limit_metrics(token_count)
-    if OUT.exists() and (token_count is None or not rate_metrics):
+    if token_count is None or not rate_metrics:
         return
-    context = context_metric(token_count)
     metrics = [{"title": "Model", "formattedValue": model}]
-    if context is not None:
-        metrics.append(context)
     metrics.extend(rate_metrics)
     snapshot = {
         "title": "Codex",
@@ -105,8 +112,7 @@ def write_snapshot(hook_input):
         "metrics": metrics,
         "lastUpdatedDate": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-    if context is not None:
-        snapshot["metricsBarValue"] = context["formattedValue"]
+    snapshot["metricsBarValue"] = rate_metrics[0]["formattedValue"]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     file_descriptor, temporary_path = tempfile.mkstemp(prefix=".runcat-", dir=str(OUT.parent))
     try:
