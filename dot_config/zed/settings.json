@@ -73,6 +73,21 @@
   },
   "use_system_window_tabs": true,
   "autosave": "on_focus_change",
+  "auto_install_extensions": {
+    "biome": true,
+    "catppuccin": true,
+    "csv": true,
+    "dart": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "html": true,
+    "material-icon-theme": true,
+    "ruby": true,
+    "scss": true,
+    "terraform": true,
+    "toml": true,
+    "typespec": true
+  },
   "buffer_font_family": "HackGen35",
   "base_keymap": "JetBrains",
   "icon_theme": {
