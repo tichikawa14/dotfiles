@@ -93,6 +93,21 @@ mise -C ~/dotfiles run casks
 - [ ] Screen Recordingを`Shift+Command+3`にする
 - [ ] Text Recognitionを`Control+Shift+Command+T`にする
 
+### Raycast
+
+- [ ] Export Settings & Dataで`.rayconfig`をGit管理外の安全な場所へ書き出す
+- [ ] 新しいMacでImport Settings & Dataから`.rayconfig`を読み込む
+
+### DockDoor
+
+- [ ] 除外アプリにLINEとSparkを追加する
+- [ ] Window Switcherを現在のモニターとSpaceのウインドウだけ表示する設定にする
+- [ ] メニューバーアイコンを非表示にする
+
+### Nani
+
+- [ ] 選択したテキストを翻訳するショートカットを`Option+Command+J`にする
+
 ### GitHub
 
 - [ ] SSH秘密鍵・公開鍵を登録する

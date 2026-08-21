@@ -1,0 +1,31 @@
+shell-integration = zsh
+
+theme = Galaxy
+
+keybind = alt+super+d=close_surface
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:bottom
+keybind = alt+k=goto_split:top
+keybind = alt+l=goto_split:right
+keybind = alt+super+h=resize_split:left,30
+keybind = alt+super+j=resize_split:down,30
+keybind = alt+super+k=resize_split:up,30
+keybind = alt+super+l=resize_split:right,30
+
+confirm-close-surface = always
+window-save-state = always
+window-inherit-working-directory = true
+window-padding-x = 10
+window-padding-balance = true
+window-height = 2000
+window-width = 2000
+font-size = 12
+font-feature = -dlig
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+unfocused-split-opacity = 0.7
+
+resize-overlay = never
+keybind = shift+enter=text:\n
