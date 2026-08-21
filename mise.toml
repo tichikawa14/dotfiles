@@ -47,16 +47,18 @@ min_version = "2026.8.2"
 "~/.config/mise/config.toml" = { source = "dot_config/mise/config.toml", mode = "symlink" }
 
 [bootstrap.macos.defaults]
-"com.apple.dock" = { tilesize = 50.0, "show-recents" = false, mineffect = "scale", "mru-spaces" = false }
-"NSGlobalDomain" = { AppleShowAllExtensions = true, KeyRepeat = 2, InitialKeyRepeat = 15, AppleKeyboardUIMode = 3, NSAutomaticCapitalizationEnabled = false, NSAutomaticSpellingCorrectionEnabled = false, "com.apple.keyboard.fnState" = true, "com.apple.sound.beep.sound" = "/Users/ichikawa/Library/Sounds/codex-notification.wav", "com.apple.sound.beep.volume" = 1.0, "com.apple.trackpad.scaling" = "3", "com.apple.swipescrolldirection" = true, "com.apple.mouse.scaling" = "3", "com.apple.scrollwheel.scaling" = "5" }
+"com.apple.dock" = { autohide = true, orientation = "left", tilesize = 50.0, "show-recents" = false, mineffect = "scale", "mru-spaces" = false }
+"NSGlobalDomain" = { AppleInterfaceStyle = "Dark", AppleMenuBarVisibleInFullscreen = true, AppleShowAllExtensions = true, AppleShowScrollBars = "WhenScrolling", AppleWindowTabbingMode = "always", KeyRepeat = 2, InitialKeyRepeat = 15, AppleKeyboardUIMode = 3, NSAutomaticCapitalizationEnabled = false, NSAutomaticSpellingCorrectionEnabled = false, "com.apple.keyboard.fnState" = true, "com.apple.sound.beep.sound" = "/Users/ichikawa/Library/Sounds/codex-notification.wav", "com.apple.sound.beep.volume" = 1.0, "com.apple.trackpad.scaling" = "3", "com.apple.swipescrolldirection" = true, "com.apple.mouse.scaling" = "3", "com.apple.scrollwheel.scaling" = "5" }
 "com.apple.Finder" = { AppleShowAllFiles = true }
-"com.apple.finder" = { ShowPathbar = true, WarnOnEmptyTrash = false }
+"com.apple.finder" = { FXPreferredViewStyle = "Nlsv", FXRemoveOldTrashItems = true, ShowExternalHardDrivesOnDesktop = true, ShowPathbar = true, ShowRemovableMediaOnDesktop = true, WarnOnEmptyTrash = false }
 "com.apple.appleseed.FeedbackAssistant" = { Autogather = false }
 "com.apple.CrashReporter" = { DialogType = "none" }
 "com.apple.desktopservices" = { DSDontWriteNetworkStores = true, DSDontWriteUSBStores = true }
 "com.apple.menuextra.battery" = { ShowPercent = "YES" }
+"com.apple.menuextra.clock" = { ShowSeconds = true }
 "com.apple.AppleMultitouchTrackpad" = { Clicking = true }
 "com.apple.driver.AppleBluetoothMultitouch.trackpad" = { Clicking = true }
+"com.apple.WindowManager" = { EnableTiledWindowMargins = false }
 
 [bootstrap.user]
 login_shell = "/bin/zsh"
