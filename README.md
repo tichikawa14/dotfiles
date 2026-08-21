@@ -84,6 +84,15 @@ mise -C ~/dotfiles run casks
 
 - [ ] よく使う項目にホームディレクトリなどを追加する
 
+### CleanShot X
+
+- [ ] Capture Areaを`Shift+Command+4`にする
+- [ ] Capture Fullscreenを`Shift+Command+5`にする
+- [ ] All-In-Oneを`Control+Shift+Command+4`にする
+- [ ] Scrolling Captureを`Shift+Command+2`にする
+- [ ] Screen Recordingを`Shift+Command+3`にする
+- [ ] Text Recognitionを`Control+Shift+Command+T`にする
+
 ### GitHub
 
 - [ ] SSH秘密鍵・公開鍵を登録する
