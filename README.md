@@ -65,7 +65,7 @@ mise -C ~/dotfiles run casks
 
 ### `.zsh_history`移行
 
-- [ ] Macのファイル共有で新しいPCに移す
+- [ ] 旧Macの `~/.zsh_history` をMacのファイル共有で新Macのホームフォルダにコピーし、既存のファイルを置き換える
 
 ### システム環境設定
 
