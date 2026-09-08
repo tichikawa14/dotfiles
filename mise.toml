@@ -35,6 +35,7 @@ min_version = "2026.8.2"
 "~/.codex/runcat-hook.py" = { source = "dot_codex/runcat-hook.py", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config" = { source = "dot_config/ghostty/config", mode = "symlink" }
 "~/.config/karabiner/karabiner.json" = { source = "dot_config/karabiner/karabiner.json", mode = "symlink" }
+"~/.config/snapzy/config.toml" = { source = "dot_config/snapzy/config.toml", mode = "symlink" }
 "~/.config/zed/keymap.json" = { source = "dot_config/zed/keymap.json", mode = "symlink" }
 "~/.config/zed/settings.json" = { source = "dot_config/zed/settings.json", mode = "symlink" }
 "~/Library/Sounds/codex-notification.wav" = { source = "dot_Library/Sounds/codex-notification.wav", mode = "symlink" }

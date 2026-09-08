@@ -29,6 +29,7 @@ casks=(
   orbstack
   raycast
   slack
+  snapzy
   spotify
   zed
   zoom
