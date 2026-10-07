@@ -60,6 +60,10 @@
     "key": "Command+Alt+Right"
   },
   {
+    "command": "openAvatarOverlay",
+    "key": null
+  },
+  {
     "command": "openBrowserTab",
     "key": "Command+Shift+B"
   },
@@ -84,7 +88,7 @@
     "key": "Command+Alt+Left"
   },
   {
-    "command": "toggleBrowserPanel",
+    "command": "stepWorkspaceLayout",
     "key": null
   },
   {
