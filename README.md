@@ -97,6 +97,7 @@ mise -C ~/dotfiles run casks
 
 - [ ] Export Settings & Dataで`.rayconfig`をGit管理外の安全な場所へ書き出す
 - [ ] 新しいMacでImport Settings & Dataから`.rayconfig`を読み込む
+- [ ] カレンダー連携を設定する
 
 ### DockDoor
 
