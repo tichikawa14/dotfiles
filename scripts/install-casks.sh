@@ -31,6 +31,7 @@ casks=(
   slack
   snapzy
   spotify
+  t3-code
   zed
   zoom
 )
