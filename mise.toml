@@ -33,6 +33,7 @@ min_version = "2026.8.2"
 "~/.codex/hooks.json" = { source = "dot_codex/hooks.json", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
 "~/.codex/runcat-hook.py" = { source = "dot_codex/runcat-hook.py", mode = "symlink" }
+"~/.t3/userdata/keybindings.json" = { source = "dot_t3/userdata/keybindings.json", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config" = { source = "dot_config/ghostty/config", mode = "symlink" }
 "~/.config/karabiner/karabiner.json" = { source = "dot_config/karabiner/karabiner.json", mode = "symlink" }
 "~/.config/snapzy/config.toml" = { source = "dot_config/snapzy/config.toml", mode = "symlink" }
