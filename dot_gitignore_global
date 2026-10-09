@@ -3,3 +3,5 @@ node_modules/
 .directory/
 .DS_Store
 .swp
+
+**/.claude/.cc-writes/
