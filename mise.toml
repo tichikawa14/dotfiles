@@ -30,6 +30,7 @@ min_version = "2026.8.2"
 
 [dotfiles]
 "~/.claude/CLAUDE.md" = { source = "dot_claude/CLAUDE.md", mode = "symlink" }
+"~/.claude/runcat-t3-usage.py" = { source = "dot_claude/runcat-t3-usage.py", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
 "~/.codex/hooks.json" = { source = "dot_codex/hooks.json", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
@@ -70,6 +71,10 @@ login_shell = "/bin/zsh"
 [tasks.casks]
 description = "Homebrew caskを導入する"
 run = "./scripts/install-casks.sh"
+
+[tasks.runcat-claude]
+description = "T3 CodeのClaude Code利用率をRunCatへ定期反映する"
+run = "python3 scripts/install-runcat-claude.py"
 
 [tasks.bootstrap]
 description = "Homebrew所有のアプリを適用する"

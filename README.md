@@ -59,6 +59,28 @@ mise -C ~/dotfiles run casks
 
 `mise bootstrap`では管理しないため、新しいMacのセットアップ時に以下を確認します。
 
+### RunCat NeoのClaude Code利用率（T3 Code経由）
+
+T3 Codeのローカルキャッシュから5時間枠・7日枠の利用率と、日本時間のリセット日時を反映します。
+
+```sh
+mise -C ~/dotfiles run runcat-claude
+```
+
+RunCat Neoの「設定 → Metrics → Custom Metrics」で `~/.claude/runcat-usage.json` を追加します。
+T3 Codeが利用率を取得した後、30秒以内に反映されます。取得日時はT3 Codeのキャッシュに合わせ、リセット済みの枠は「更新待ち」と表示します。
+T3 Codeは画面を使用中の間だけ、既定で約5分ごとに利用率を取得します。T3 Codeを閉じている間や画面ロック中は値が更新されません。
+キャッシュがない場合やサブスクリプション以外の認証では「未取得」と表示します。
+T3 Code経由のClaude Codeは非対話モードで動くため、`statusLine` は実行されません。
+利用率データや認証情報はGit管理しません。各Macで上のコマンドとRunCatへの登録を行ってください。
+
+解除する場合は以下を実行します。
+
+```sh
+launchctl bootout "gui/$(id -u)/local.runcat.claude-usage"
+rm ~/Library/LaunchAgents/local.runcat.claude-usage.plist
+```
+
 ### Xcode
 
 - [ ] Xcodeのライセンスに同意する
