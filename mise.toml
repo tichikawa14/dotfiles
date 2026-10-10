@@ -29,6 +29,7 @@ min_version = "2026.8.2"
 "mas:6757801838" = "latest" # RunCat Neo
 
 [dotfiles]
+"~/.claude/CLAUDE.md" = { source = "dot_claude/CLAUDE.md", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
 "~/.codex/hooks.json" = { source = "dot_codex/hooks.json", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
