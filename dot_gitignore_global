@@ -5,3 +5,5 @@ node_modules/
 .swp
 
 **/.claude/.cc-writes/
+
+**/.claude/settings.local.json
