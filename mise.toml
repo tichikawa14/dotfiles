@@ -35,9 +35,7 @@ min_version = "2026.8.2"
 "~/.claude/skills/sol-review" = { source = "dot_claude/skills/sol-review", mode = "symlink" }
 "~/.claude/skills/yomiyasu" = { source = "dot_agents/skills/yomiyasu", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
-"~/.codex/hooks.json" = { source = "dot_codex/hooks.json", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
-"~/.codex/runcat-hook.py" = { source = "dot_codex/runcat-hook.py", mode = "symlink" }
 "~/.t3/userdata/keybindings.json" = { source = "dot_t3/userdata/keybindings.json", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config" = { source = "dot_config/ghostty/config", mode = "symlink" }
 "~/.config/karabiner/karabiner.json" = { source = "dot_config/karabiner/karabiner.json", mode = "symlink" }
@@ -78,6 +76,10 @@ run = "./scripts/install-casks.sh"
 [tasks.runcat-claude]
 description = "T3 CodeのClaude Code利用率をRunCatへ定期反映する"
 run = "python3 scripts/install-runcat-claude.py"
+
+[tasks.runcat-codex]
+description = "Codexの利用率をRunCatへ定期反映する"
+run = "python3 scripts/install-runcat-codex.py"
 
 [tasks.bootstrap]
 description = "Homebrew所有のアプリを適用する"

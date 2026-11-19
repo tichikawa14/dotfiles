@@ -81,6 +81,25 @@ launchctl bootout "gui/$(id -u)/local.runcat.claude-usage"
 rm ~/Library/LaunchAgents/local.runcat.claude-usage.plist
 ```
 
+### RunCat NeoのCodex利用率
+
+ChatGPTのusage APIから5時間枠・7日枠の利用率と、日本時間のリセット日時を5分ごとに反映します。
+認証には `~/.codex/auth.json` のトークンを使うため、Codexへのログインが必要です。
+
+```sh
+mise -C ~/dotfiles run runcat-codex
+```
+
+RunCat Neoの「設定 → Metrics → Custom Metrics」で `~/.codex/runcat-usage.json` を追加します。
+エラーは `~/.codex/runcat-usage-error.log` に出力されます。
+
+解除する場合は以下を実行します。
+
+```sh
+launchctl bootout "gui/$(id -u)/local.runcat.codex-usage"
+rm ~/Library/LaunchAgents/local.runcat.codex-usage.plist
+```
+
 ### Xcode
 
 - [ ] Xcodeのライセンスに同意する
