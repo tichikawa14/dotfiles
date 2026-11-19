@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 def main():
-    source = Path(__file__).resolve().parent.parent / "dot_claude/runcat-t3-usage.py"
+    source = Path(__file__).resolve().parent.parent / "dot_claude/runcat-usage.py"
     label = "local.runcat.claude-usage"
     agents = Path.home() / "Library/LaunchAgents"
     agents.mkdir(parents=True, exist_ok=True)
@@ -18,10 +18,11 @@ def main():
     python = "/usr/bin/python3" if Path("/usr/bin/python3").exists() else sys.executable
     job = {
         "Label": label,
-        "ProgramArguments": [python, str(source)],
+        "ProgramArguments": [python, "-I", str(source)],
         "RunAtLoad": True,
-        "StartInterval": 30,
-        "StandardErrorPath": str(Path.home() / ".claude/runcat-t3-error.log"),
+        # 非公開APIへの問い合わせなので、5分間隔に抑える。
+        "StartInterval": 300,
+        "StandardErrorPath": str(Path.home() / ".claude/runcat-usage-error.log"),
     }
     (Path.home() / ".claude").mkdir(parents=True, exist_ok=True)
     with agent.open("wb") as output:
@@ -29,8 +30,12 @@ def main():
     domain = f"gui/{os.getuid()}"
     subprocess.run(["launchctl", "bootout", f"{domain}/{label}"], capture_output=True)
     subprocess.run(["launchctl", "bootstrap", domain, str(agent)], check=True)
-    subprocess.run([python, str(source)], check=True)
-    print("Claude Code利用率を30秒ごとにRunCatへ反映する設定を導入しました。")
+    # 手動で入れていた旧ラベルのジョブが残ると同じファイルに二重に書くため、外す。
+    legacy = agents / "com.tichikawa14.runcat-claude-usage.plist"
+    subprocess.run(["launchctl", "bootout", f"{domain}/{legacy.stem}"], capture_output=True)
+    legacy.unlink(missing_ok=True)
+    subprocess.run([python, "-I", str(source)], check=True)
+    print("Claude Code利用率を5分ごとにRunCatへ反映する設定を導入しました。")
 
 
 if __name__ == "__main__":
