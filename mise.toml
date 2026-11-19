@@ -32,7 +32,7 @@ min_version = "2026.8.2"
 "~/.agents/skills/yomiyasu" = { source = "dot_agents/skills/yomiyasu", mode = "symlink" }
 "~/.claude/CLAUDE.md" = { source = "dot_claude/CLAUDE.md", mode = "symlink" }
 "~/.claude/runcat-t3-usage.py" = { source = "dot_claude/runcat-t3-usage.py", mode = "symlink" }
-"~/.claude/skills/sol-review" = { source = "dot_claude/skills/sol-review", mode = "symlink" }
+"~/.claude/skills/gpt-review" = { source = "dot_claude/skills/gpt-review", mode = "symlink" }
 "~/.claude/skills/yomiyasu" = { source = "dot_agents/skills/yomiyasu", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
