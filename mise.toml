@@ -35,6 +35,7 @@ min_version = "2026.8.2"
 "~/.claude/skills/yomiyasu" = { source = "dot_agents/skills/yomiyasu", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = "dot_codex/AGENTS.md", mode = "symlink" }
 "~/.codex/keybindings.json" = { source = "dot_codex/keybindings.json", mode = "symlink" }
+"~/.orca/keybindings.json" = { source = "dot_orca/keybindings.json", mode = "symlink" }
 "~/.t3/userdata/keybindings.json" = { source = "dot_t3/userdata/keybindings.json", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config" = { source = "dot_config/ghostty/config", mode = "symlink" }
 "~/.config/karabiner/karabiner.json" = { source = "dot_config/karabiner/karabiner.json", mode = "symlink" }

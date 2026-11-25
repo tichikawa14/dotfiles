@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "keybindings": {
+    "sidebar.left.toggle": ["Mod+S"],
+    "editor.save": ["Ctrl+S"],
+    "sidebar.right.toggle": ["Mod+Alt+S"],
+    "sidebar.sourceControl.toggle": ["Mod+Shift+G", "Mod+Shift+X", "Ctrl+Mod+Shift+G"],
+    "worktree.navigateUp": ["Mod+Shift+ArrowUp", "Mod+Shift+BracketLeft", "Mod+Alt+ArrowLeft"],
+    "worktree.navigateDown": ["Mod+Shift+ArrowDown", "Mod+Shift+BracketRight", "Mod+Alt+ArrowRight"],
+    "tab.previousAllTypes": [],
+    "tab.nextAllTypes": [],
+    "worktree.history.back": [],
+    "worktree.history.forward": [],
+    "floatingTerminal.toggle": ["Mod+Alt+A", "Mod+J"]
+  },
+  "platforms": {
+    "darwin": {},
+    "linux": {},
+    "win32": {}
+  },
+  "migrations": {
+    "legacySettings": "done"
+  }
+}

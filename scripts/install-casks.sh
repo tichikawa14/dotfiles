@@ -27,6 +27,7 @@ casks=(
   ngrok
   notion
   orbstack
+  stablyai/orca/orca
   raycast
   slack
   snapzy
@@ -35,6 +36,17 @@ casks=(
   zed
   zoom
 )
+
+# Orca は公式の Homebrew cask がなく開発元の tap にあるため、tap しないと info も install も解決できない。
+taps=(
+  stablyai/orca
+)
+
+for tap in "${taps[@]}"; do
+  if ! brew tap | grep -qx "$tap"; then
+    brew tap "$tap"
+  fi
+done
 
 if [ "${DOTFILES_CHECK_ONLY:-0}" = 1 ]; then
   brew info --cask "${casks[@]}" >/dev/null
