@@ -73,14 +73,6 @@ login_shell = "/bin/zsh"
 description = "Homebrew caskを導入する"
 run = "./scripts/install-casks.sh"
 
-[tasks.runcat-claude]
-description = "Claude Codeの利用率をRunCatへ定期反映する"
-run = "python3 scripts/install-runcat-claude.py"
-
-[tasks.runcat-codex]
-description = "Codexの利用率をRunCatへ定期反映する"
-run = "python3 scripts/install-runcat-codex.py"
-
 [tasks.bootstrap]
 description = "Homebrew所有のアプリを適用する"
 run = [

@@ -59,46 +59,6 @@ mise -C ~/dotfiles run casks
 
 `mise bootstrap`では管理しないため、新しいMacのセットアップ時に以下を確認します。
 
-### RunCat NeoのClaude Code利用率
-
-Anthropicのusage APIから5時間枠・7日枠の利用率と、日本時間のリセット日時を5分ごとに反映します。
-認証にはKeychainにあるClaude CodeのOAuthトークンを使うため、Claude Codeへのログインが必要です。
-トークンの期限が切れている間は取得を見送り、Claude Codeを使ってトークンが更新されると再開します。
-
-```sh
-mise -C ~/dotfiles run runcat-claude
-```
-
-RunCat Neoの「設定 → Metrics → Custom Metrics」で `~/.claude/runcat-usage.json` を追加します。
-エラーは `~/.claude/runcat-usage-error.log` に出力されます。
-
-解除する場合は以下を実行します。
-
-```sh
-launchctl bootout "gui/$(id -u)/local.runcat.claude-usage"
-rm ~/Library/LaunchAgents/local.runcat.claude-usage.plist
-```
-
-### RunCat NeoのCodex利用率
-
-ChatGPTのusage APIから5時間枠・7日枠の利用率と、日本時間のリセット日時を5分ごとに反映します。
-認証には `~/.codex/auth.json` のトークンを使うため、Codexへのログインが必要です。
-
-```sh
-mise -C ~/dotfiles run runcat-codex
-```
-
-RunCat Neoの「設定 → Metrics → Custom Metrics」で `~/.codex/runcat-usage.json` を追加します。
-エラーは `~/.codex/runcat-usage-error.log` に出力されます。
-利用率データや認証情報はGit管理しません。各Macで上のコマンドとRunCatへの登録を行ってください。
-
-解除する場合は以下を実行します。
-
-```sh
-launchctl bootout "gui/$(id -u)/local.runcat.codex-usage"
-rm ~/Library/LaunchAgents/local.runcat.codex-usage.plist
-```
-
 ### Xcode
 
 - [ ] Xcodeのライセンスに同意する
