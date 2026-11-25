@@ -9,3 +9,5 @@ source "$HOME/.zsh/init.zsh"
 source "$HOME/.zsh/alias.zsh"
 source "$HOME/.zsh/history.zsh"
 source "$HOME/.zsh/keybind.zsh"
+export T3CODE_TELEMETRY_ENABLED=false
+export T3CODE_OTEL_SDK_DISABLED=true
